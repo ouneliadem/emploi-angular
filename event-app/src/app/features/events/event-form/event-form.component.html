@@ -1,13 +1,22 @@
 <div class="offer-card">
   <h3>Post a Job Offer</h3>
   <p class="subtitle">Looking for talent? Create a listing here.</p>
-  
+
   <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="offer-form">
-    
     <div class="form-group">
       <label for="titre">Job Title</label>
-      <input type="text" id="titre" formControlName="titre" placeholder="e.g. Tour Guide">
-      <span class="error-text" *ngIf="eventForm.get('titre')?.invalid && eventForm.get('titre')?.touched">
+      <input
+        type="text"
+        id="titre"
+        formControlName="titre"
+        placeholder="e.g. Tour Guide"
+      />
+      <span
+        class="error-text"
+        *ngIf="
+          eventForm.get('titre')?.invalid && eventForm.get('titre')?.touched
+        "
+      >
         Title is required.
       </span>
     </div>
@@ -15,22 +24,37 @@
     <div class="form-row">
       <div class="form-group half">
         <label for="company">Company</label>
-        <input type="text" id="company" placeholder="e.g. Wanderlust Inc">
+        <input
+          type="text"
+          id="company"
+          formControlName="company"
+          placeholder="e.g. Wanderlust Inc"
+        />
       </div>
       <div class="form-group half">
         <label for="date">Start Date</label>
-        <input type="date" id="date" formControlName="date">
+        <input type="date" id="date" formControlName="date" />
       </div>
     </div>
 
     <div class="form-group">
       <label for="lieu">Location</label>
-      <input type="text" id="lieu" formControlName="lieu" placeholder="e.g. Remote or Bali">
-      <span class="error-text" *ngIf="eventForm.get('lieu')?.invalid && eventForm.get('lieu')?.touched">
+      <input
+        type="text"
+        id="lieu"
+        formControlName="lieu"
+        placeholder="e.g. Remote or Bali"
+      />
+      <span
+        class="error-text"
+        *ngIf="eventForm.get('lieu')?.invalid && eventForm.get('lieu')?.touched"
+      >
         Location is required.
       </span>
     </div>
 
     <button type="submit" class="post-btn">Post Job Offer</button>
+    <span class="error-text" *ngIf="errorMessage">{{ errorMessage }}</span>
+    <span class="subtitle" *ngIf="message">{{ message }}</span>
   </form>
 </div>

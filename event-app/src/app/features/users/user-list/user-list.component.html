@@ -1,23 +1,45 @@
-<div class="card" style="height: 100%;">
+<div class="card" style="height: 100%">
   <h3>Liste des Utilisateurs</h3>
-  
-  <div class="mt-6 flex flex-col gap-4">
-    
-    <div class="user-item card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 1rem;">
-      <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: bold;">JD</div>
-      <div>
-        <h4>Jean Dupont</h4>
-        <p style="color: var(--text-muted); font-size: 0.875rem;">jean.dupont&#64;example.com</p>
-      </div>
-    </div>
-    
-    <div class="user-item card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 1rem;">
-      <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--success); display: flex; align-items: center; justify-content: center; font-weight: bold;">MA</div>
-      <div>
-        <h4>Marie Anne</h4>
-        <p style="color: var(--text-muted); font-size: 0.875rem;">marie.anne&#64;example.com</p>
-      </div>
-    </div>
+  <p class="error-text" *ngIf="errorMessage">{{ errorMessage }}</p>
 
+  <div class="mt-6 flex flex-col gap-4">
+    <div
+      class="user-item card"
+      *ngFor="let user of users"
+      style="
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        justify-content: space-between;
+      "
+    >
+      <div style="display: flex; align-items: center; gap: 1rem">
+        <div
+          style="
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+          "
+        >
+          {{ initialsOf(user) }}
+        </div>
+        <div>
+          <h4>{{ user.name }}</h4>
+          <p style="color: var(--text-muted); font-size: 0.875rem">
+            {{ user.email }}
+          </p>
+        </div>
+      </div>
+      <button class="btn btn-primary" (click)="deleteUser(user._id)">
+        Supprimer
+      </button>
+    </div>
   </div>
 </div>

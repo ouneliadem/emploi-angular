@@ -7,8 +7,24 @@
     <ul class="nav-links">
       <li><a routerLink="/events" routerLinkActive="active">Événements</a></li>
       <li><a routerLink="/users" routerLinkActive="active">Utilisateurs</a></li>
-      <li><a routerLink="/participations" routerLinkActive="active">Participations</a></li>
-      <li><a routerLink="/auth/login" routerLinkActive="active" style="color: var(--primary);">Login / Inscription</a></li>
+      <li>
+        <a routerLink="/participations" routerLinkActive="active"
+          >Participations</a
+        >
+      </li>
+      <li *ngIf="!isLoggedIn">
+        <a
+          routerLink="/auth/login"
+          routerLinkActive="active"
+          style="color: var(--primary)"
+          >Login / Inscription</a
+        >
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a (click)="logout()" style="color: var(--primary); cursor: pointer"
+          >Logout</a
+        >
+      </li>
     </ul>
   </div>
 </nav>

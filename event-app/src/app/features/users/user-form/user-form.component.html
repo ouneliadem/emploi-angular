@@ -1,28 +1,74 @@
 <div class="card">
   <h3>Nouvel Utilisateur</h3>
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="mt-6 flex flex-col gap-4">
-    
+  <form
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+    class="mt-6 flex flex-col gap-4"
+  >
     <div class="form-group">
-      <label for="nom">Nom complet</label>
-      <input type="text" id="nom" formControlName="nom" placeholder="Ex: Jean Dupont">
-      <span class="error-text" *ngIf="userForm.get('nom')?.invalid && userForm.get('nom')?.touched">
+      <label for="nom">Nom</label>
+      <input
+        type="text"
+        id="nom"
+        formControlName="nom"
+        placeholder="Ex: Dupont"
+      />
+      <span
+        class="error-text"
+        *ngIf="userForm.get('nom')?.invalid && userForm.get('nom')?.touched"
+      >
         Le nom est requis. (Minimum 3 caractères)
       </span>
     </div>
 
     <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input
+        type="text"
+        id="prenom"
+        formControlName="prenom"
+        placeholder="Ex: Jean"
+      />
+      <span
+        class="error-text"
+        *ngIf="
+          userForm.get('prenom')?.invalid && userForm.get('prenom')?.touched
+        "
+      >
+        Le prénom est requis.
+      </span>
+    </div>
+
+    <div class="form-group">
       <label for="email">Adresse Email</label>
-      <input type="email" id="email" formControlName="email" placeholder="Ex: jean&#64;example.com">
-      <span class="error-text" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="Ex: jean&#64;example.com"
+      />
+      <span
+        class="error-text"
+        *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+      >
         L'adresse email est requise et doit être valide.
       </span>
     </div>
 
     <div class="form-group">
       <label for="profession">Profession (Optionnel)</label>
-      <input type="text" id="profession" formControlName="profession" placeholder="Ex: Développeur Web">
+      <input
+        type="text"
+        id="profession"
+        formControlName="profession"
+        placeholder="Ex: Développeur Web"
+      />
     </div>
 
     <button type="submit" class="btn btn-primary">Ajouter</button>
+    <span class="error-text" *ngIf="errorMessage">{{ errorMessage }}</span>
+    <span class="error-text" style="color: var(--success)" *ngIf="message">{{
+      message
+    }}</span>
   </form>
 </div>

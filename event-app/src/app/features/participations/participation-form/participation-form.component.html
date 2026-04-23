@@ -1,15 +1,25 @@
 <div class="card">
   <h3>Nouvelle Inscription</h3>
-  <form [formGroup]="participationForm" (ngSubmit)="onSubmit()" class="mt-6 flex flex-col gap-4">
-    
+  <form
+    [formGroup]="participationForm"
+    (ngSubmit)="onSubmit()"
+    class="mt-6 flex flex-col gap-4"
+  >
     <div class="form-group">
       <label for="userId">Sélectionner un Utilisateur</label>
       <select id="userId" formControlName="userId">
-        <option value="" disabled selected>-- Choisir un utilisateur --</option>
-        <option value="1">Jean Dupont</option>
-        <option value="2">Marie Anne</option>
+        <option value="" disabled>-- Choisir un utilisateur --</option>
+        <option *ngFor="let user of users" [value]="user._id">
+          {{ user.name }}
+        </option>
       </select>
-      <span class="error-text" *ngIf="participationForm.get('userId')?.invalid && participationForm.get('userId')?.touched">
+      <span
+        class="error-text"
+        *ngIf="
+          participationForm.get('userId')?.invalid &&
+          participationForm.get('userId')?.touched
+        "
+      >
         Veuillez sélectionner un utilisateur.
       </span>
     </div>
@@ -17,12 +27,18 @@
     <div class="form-group">
       <label for="eventId">Sélectionner un Événement</label>
       <select id="eventId" formControlName="eventId">
-        <option value="" disabled selected>-- Choisir un événement --</option>
-        <option value="1">Lancement de Produit (15 Avril)</option>
-        <option value="2">Atelier Angular (22 Mai)</option>
-        <option value="3">Conférence Tech (10 Juin)</option>
+        <option value="" disabled>-- Choisir un événement --</option>
+        <option *ngFor="let event of events" [value]="event._id">
+          {{ event.title }} ({{ event.date | date: "mediumDate" }})
+        </option>
       </select>
-      <span class="error-text" *ngIf="participationForm.get('eventId')?.invalid && participationForm.get('eventId')?.touched">
+      <span
+        class="error-text"
+        *ngIf="
+          participationForm.get('eventId')?.invalid &&
+          participationForm.get('eventId')?.touched
+        "
+      >
         Veuillez sélectionner un événement.
       </span>
     </div>
@@ -30,12 +46,18 @@
     <div class="form-group">
       <label for="statut">Statut de la participation</label>
       <select id="statut" formControlName="statut">
-        <option value="confirmé">Confirmé</option>
-        <option value="en_attente">En attente</option>
-        <option value="annulé">Annulé</option>
+        <option *ngFor="let status of statuses" [value]="status.value">
+          {{ status.label }}
+        </option>
       </select>
     </div>
 
-    <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Confirmer l'inscription</button>
+    <button type="submit" class="btn btn-primary" style="margin-top: 1rem">
+      Confirmer l'inscription
+    </button>
+    <span class="error-text" *ngIf="errorMessage">{{ errorMessage }}</span>
+    <span class="error-text" style="color: var(--success)" *ngIf="message">{{
+      message
+    }}</span>
   </form>
 </div>

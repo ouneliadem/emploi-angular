@@ -1,0 +1,105 @@
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.hero-section {
+  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.2), transparent 70%),
+              linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1.5rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #fff, #cbd5e1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+  color: #94a3b8;
+  font-size: 1.125rem;
+  margin-bottom: 2.5rem;
+}
+
+.search-bar {
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  gap: 0.5rem;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+}
+
+.search-input .icon {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  opacity: 0.5;
+}
+
+.search-input input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1rem 0;
+  color: white;
+  font-size: 1rem;
+}
+
+.search-input input:focus {
+  outline: none;
+  box-shadow: none; /* overrides global input focus */
+}
+
+.search-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .search-bar {
+    flex-direction: column;
+  }
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
